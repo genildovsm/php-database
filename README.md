@@ -48,7 +48,6 @@ echo '<br>FoundRows: '.$obPagination->getFoundRows();
 /**
  * Select convencional
  * Possibilidade de aplicar JOINS na Classe "DB".
- * 
  */
 
 $stmt = (new DB(table:'tabela'))->select(
