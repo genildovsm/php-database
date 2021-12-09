@@ -33,7 +33,7 @@ use GenildoMartins\BuildQuery\Pagination;
 
 
 $where = 'id<?';
-$values = [15];
+$values = [15]; // Valores que serão aplicados no bind "?"
 
 $obPagination = new Pagination (
 	table:'vagas', 
