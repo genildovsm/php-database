@@ -6,11 +6,21 @@
 /**
  * Configurar os parâmetros do banco nas seguintes variáveis de ambiente 
  * */
-putenv('DB_HOST=127.0.0.1');
-putenv('DB_NAME=db01');
+putenv('DB_HOST=servidor');
+putenv('DB_NAME=banco');
+// Porta utilizada pelo banco de dados. Ex: Mysql
 putenv('DB_PORT=3306');
-putenv('DB_USER=lab');
-putenv('DB_PASS=12345678');
+putenv('DB_USER=usuario');
+putenv('DB_PASS=senha');
+// Ativar as mensagens de possíveis erros
 putenv('DEBUG=true');
+
+
+require __DIR__.'/vendor/autoload.php';
+
+use GenildoMartins\BuildQuery\DB;
+use GenildoMartins\BuildQuery\Pagination;
+
+
 
 ```
