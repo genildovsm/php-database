@@ -28,7 +28,7 @@ $where = 'id<?'; // Preparando a consulta
 $values = [15]; // Valores que serão aplicados no bind "?"
 
 $obPagination = new Pagination (
-	table:'vagas', 
+	table:'tabela', 
 	where: $where, 
 	values: $values,
 	currentPage: $_GET['page'] ?? null
@@ -49,8 +49,8 @@ echo '<br>FoundRows: '.$obPagination->getFoundRows();
  * Select convencional
  */
 
-$stmt = (new DB(table:'vagas'))->select(
-	fields:'id, titulo',
+$stmt = (new DB(table:'tabela'))->select(
+	fields:'campo_a, campo_b',
 	where: $where,
 	values: $values
 );
