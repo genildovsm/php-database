@@ -1,0 +1,19 @@
+{
+	"name": "genildovsm/database",
+	"description": "A simple library for build query",
+	"license": "GPL-3.0+",
+	"authors": [
+		{
+			"name": "Genildo Martins",
+			"email": "genildovsm@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"GenildoMartins\\BuildQuery\\": "src/"
+		}
+	},
+	"require": {
+		"php": ">=8.0"
+	}
+}
