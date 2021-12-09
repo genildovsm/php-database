@@ -45,8 +45,9 @@ $pagination = new Pagination (
 
 echo '<h2>Select com paginação</h2>';
 
-echo 'Resultset:';
-dd($pagination->getResults());
+echo '<pre>';
+print_r($pagination->getResults());
+echo '</pre>';
 
 echo '<br>CurrentPage: '.$pagination->getCurrentPage();
 echo '<br>Pages: '.$pagination->getPages();
@@ -64,4 +65,6 @@ $stmt = (new DB(table:'vagas'))->select(
 );
 
 echo '<h2>Select convencional</h2>';
-dd($stmt->fetchAll());
+echo '<pre>';
+print_r($stmt->fetchAll());
+echo '</pre>';

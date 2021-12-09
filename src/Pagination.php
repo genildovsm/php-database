@@ -6,6 +6,7 @@ use GenildoMartins\BuildQuery\DB;
 
 class Pagination
 {
+	private $ipp;
 	private $results;
 	private $pages;
 	private $currentPage;
@@ -13,26 +14,20 @@ class Pagination
 
 	public function __construct(string $table, string $where='', array $values=[], $currentPage=1, int $ipp=2)
 	{		
-		
+		$this->ipp = $ipp;
 		$this->currentPage = filter_var($currentPage, FILTER_VALIDATE_INT, ['options'=>['min_range'=>1]]) ? $currentPage : 1;
 
 		$db = new DB($table);
 
-		$limit = ($this->currentPage-1)*$ipp.','.$ipp;
-		$stmt = $db->select(where:$where, values:$values, limit:$limit);
-
+		$stmt = $db->select(where:$where, values:$values, limit:$this->getLimit());
 		$stmt->execute();
-
 		$this->foundRows = $db->getFoundRows();
 		$this->pages = ceil($this->foundRows/$ipp);
 
 		if ($this->currentPage > $this->pages and $this->foundRows > 0) {
 			
 			$this->currentPage = $this->pages;
-
-			$limit = ($this->currentPage-1)*$ipp.','.$ipp;
-
-			$stmt = $db->select(where:$where, values:$values, limit:$limit);
+			$stmt = $db->select(where:$where, values:$values, limit:$this->getLimit());
 			$stmt->execute();
 
 		}		
@@ -41,6 +36,10 @@ class Pagination
 
 	}
 
+	private function getLimit()
+	{
+		return ($this->currentPage-1)*$this->ipp.','.$this->ipp;
+	}
 
 	public function getResults()
 	{
@@ -62,16 +61,5 @@ class Pagination
 		return $this->foundRows;
 	}
 
-	// public function __construct(int $results, int $currentPage=1, int $limit=10)
-	// {
-	// 	$this->results = $results;
-	// 	$this->limit = $limit;
-	// 	$this->currentPage = filter_var($currentPage, FILTER_VALIDATE_INT,['options'=>['min_range'=>1]]) ? $currentPage : 1;
-	// }
 
-	// private function calculate()
-	// {
-	// 	$this->pages = ($this->results > 0) ? ceil($this->results/$this->limit) : 1;
-	// 	$this->currentPage = $this->currentPage <= $this->pages ? $this->currentPage : $this->pages;
-	// }
 }
