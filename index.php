@@ -35,7 +35,7 @@ use GenildoMartins\BuildQuery\Pagination;
 $where = 'id<?';
 $values = [15]; // Valores que serão aplicados no bind "?"
 
-$obPagination = new Pagination (
+$pagination = new Pagination (
 	table:'vagas', 
 	where: $where, 
 	values: $values,
@@ -46,11 +46,11 @@ $obPagination = new Pagination (
 echo '<h2>Select com paginação</h2>';
 
 echo 'Resultset:';
-dd($obPagination->getResults());
+dd($pagination->getResults());
 
-echo '<br>CurrentPage: '.$obPagination->getCurrentPage();
-echo '<br>Pages: '.$obPagination->getPages();
-echo '<br>FoundRows: '.$obPagination->getFoundRows();
+echo '<br>CurrentPage: '.$pagination->getCurrentPage();
+echo '<br>Pages: '.$pagination->getPages();
+echo '<br>FoundRows: '.$pagination->getFoundRows();
 
 
 /**
