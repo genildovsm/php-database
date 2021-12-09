@@ -12,12 +12,12 @@ class Pagination
 	private $currentPage;
 	private $foundRows;
 
-	public function __construct(string $table, string $where='', array $values=[], $currentPage=1, int $ipp=2)
+	public function __construct(string $table, string $join='', string $where='', array $values=[], $currentPage=1, int $ipp=2)
 	{		
 		$this->ipp = $ipp;
 		$this->currentPage = filter_var($currentPage, FILTER_VALIDATE_INT, ['options'=>['min_range'=>1]]) ? $currentPage : 1;
 
-		$db = new DB($table);
+		$db = new DB($table, $join);
 
 		$stmt = $db->select(where:$where, values:$values, limit:$this->getLimit());
 		$stmt->execute();
